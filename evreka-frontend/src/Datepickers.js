@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function DatePickers(defaultValue) {
   const classes = useStyles();
-  console.log(moment(defaultValue).format("MM-DD-YYYY"))
 
   return (
     <form className={classes.container} noValidate>
