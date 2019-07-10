@@ -1,9 +1,16 @@
 import React from 'react';
+import DatePickers from './Datepickers';
 
 function App() {
   return (
     <div className="App">
-      Evreka frontend
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>Map Icon</div>
+          <DatePickers></DatePickers>
+        </div>
+
+      </div>
     </div>
   );
 }
