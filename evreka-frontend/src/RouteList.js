@@ -8,7 +8,6 @@ class RouteList extends Component {
         this.filteredList = [{ name: "13:30 Vardiyası", vehicle: "Fenertepe", time: "13:12", driver: "Tanır Nalbant", helper: "-", performance: "66/103", status: "Dispatched" },
         { name: "13:30 Vardiyası", vehicle: "Boğazköy", time: "13:11", driver: "Selçuk Yurt", helper: "-", performance: "58/85", status: "Finished" },
         { name: "07:30 Vardiyası", vehicle: "Başakşehir", time: "07:30", driver: "Emri Akça", helper: "-", performance: "108/148", status: "Finished" }];
-        this.filter = ''
 
         this.state = {
             name: { text: '', sort: null },
@@ -22,6 +21,15 @@ class RouteList extends Component {
     }
 
     updateSearch = (field) => (event) => this.setState({ [field]: { text: event.target.value, sort: this.state[field].sort } })
+    updateSort = (field) => (event) => {
+        let sortType = event.target.attributes['data-icon'] ? event.target.attributes['data-icon'].value : null;
+        this.setState({
+            [field]: {
+                text: this.state[field].text,
+                sort: sortType === 'sort' ? true : (sortType === 'sort-up' ? false : null)
+            }
+        })
+    }
 
     render() {
         this.filteredList = this.props.routelist
@@ -31,23 +39,24 @@ class RouteList extends Component {
             if (this.state[key].sort === true)
                 this.filteredList.sort((a, b) => a > b ? 1 : -1)
             else if (this.state[key].sort === false)
-                this.filteredList.reverse((a, b) => a > b ? 1 : -1 )
+                this.filteredList.reverse((a, b) => a > b ? 1 : -1)
         })
 
         return (
             <div>
                 <div style={{ display: 'flex', marginBottom: '10px' }}>
-                    <SearchField updateSearch={this.updateSearch('name')} field="name" size="20"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('vehicle')} field="vehicle" size="10"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('time')} field="time" size="10"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('driver')} field="driver" size="20"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('helper')} field="helper" size="20"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('performance')} field="performance" size="10"></SearchField>
-                    <SearchField updateSearch={this.updateSearch('status')} field="status" size="20"></SearchField>
+                    {
+                        Object.keys(this.state).map((field, index) =>
+                            <SearchField key={index}
+                                updateSort={this.updateSort(field)}
+                                updateSearch={this.updateSearch(field)}
+                                field={field}
+                                status={this.state[field]}
+                                size="20" ></SearchField>)
+                    }
                     <div style={{ width: '5%' }} />
                 </div>
                 <div>
-                    {this.filter}
                     {this.filteredList.map((data, index) =>
                         <Route
                             key={index}
