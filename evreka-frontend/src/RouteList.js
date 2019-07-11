@@ -22,7 +22,7 @@ class RouteList extends Component {
 
     updateSearch = (field) => (event) => this.setState({ [field]: { text: event.target.value, sort: this.state[field].sort } })
     updateSort = (field) => (event) => {
-        let sortType = event.target.attributes['data-icon'] ? event.target.attributes['data-icon'].value : null;
+        let sortType = event.target.attributes['data-icon'] ? event.target.attributes['data-icon'].value : event.target.parentElement.attributes['data-icon'].value;
         this.setState({
             [field]: {
                 text: this.state[field].text,

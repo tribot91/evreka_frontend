@@ -41,3 +41,12 @@ label {
     width: 96vw;
     margin: auto;
 }
+
+.makeStyles-paper-120 {
+    padding: 16px 10px 32px !important;
+    border: none !important;
+}
+
+#modal-title {
+    margin-top: 0 !important;
+}

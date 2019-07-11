@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{ margin: '10px' }}>
-        <div style={{ padding: '8px 0', background: 'white', boxShadow: '0 -2px lightgray', display: this.state.mapview ? 'block' : 'none' }}>
+        <div style={{ padding: '8px 0', background: 'white', boxShadow: '0 -2px lightgray', overflowY: 'hidden', display: this.state.mapview ? 'block' : 'none' }}>
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
           <Leaflet></Leaflet>
           <div style={{ position: 'absolute', top: 28, left: 40, zIndex: 500, display: 'flex', alignItems: 'center' }}>
