@@ -1,3 +1,23 @@
 body {
+    background-color: #E9ECF5;
     font-family: 'Roboto', sans-serif
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.route {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 20px 5px;
+    font-size: 13px;
+}
+
+.flex {
+    display: flex;
+}
+
+label {
+    margin-bottom: 10px;
 }
