@@ -1,45 +1,35 @@
-import './customContext.css';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Modal from './SimpleModal';
 
-class CustomContext extends React.Component {
-    constructor(props) {
-        super(props);
+export default function CustomContext({ vehicle, name, driver }) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
-        this.state = {
-            visible: false,
-            x: 0,
-            y: 0
-        };
+    function handleClick(event) {
+        setAnchorEl(event.currentTarget);
     }
 
-    componentDidMount() {
-        // var self = this;
-        document.addEventListener('contextmenu', function (event) {
-            const clickX = event.clientX;
-            const clickY = event.clientY;
-            this.setState({ visible: true, x: clickX, y: clickY });
-        });
-        
-        document.addEventListener('click', function (event) {
-            this.setState({ visible: false, x: 0, y: 0 });
-        });
+    function handleClose() {
+        setAnchorEl(null);
     }
 
-    returnMenu(items) {
-        var myStyle = {
-            'position': 'absolute',
-            'top': `${this.state.y}px`,
-            'left': `${this.state.x + 5}px`
-        }
-
-        return <div className='custom-context' id='text' style={myStyle}>
-            {
-                items.map((item, index, arr) => {
-                    if (arr.length - 1 == index) {
-                        return <div key={index} className='custom-context-item-last'>{item.label}</div>
-                    } else {
-                        return <div key={index} className='custom-context-item'>{item.label}</div>
-                    }
-                })
-            }
-        </div>;
-    }
+    return (
+        <div>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} style={{ textTransform: 'Capitalize', lineHeight: 1 }}>
+                {vehicle}
+            </Button>
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <Modal vehicle={vehicle} name={name} driver={driver}></Modal>
+                <MenuItem onClick={handleClose}>Swap</MenuItem>
+            </Menu>
+        </div>
+    );
+}

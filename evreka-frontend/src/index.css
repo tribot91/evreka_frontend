@@ -21,3 +21,8 @@ body {
 label {
     margin-bottom: 10px;
 }
+
+.lc { /* left-center */
+    align-items: center;
+    display: flex;
+}

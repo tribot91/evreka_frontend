@@ -11,10 +11,9 @@ const SearchField = ({ status, field, size, updateSearch, updateSort }) => {
         <InputLabel shrink={true} htmlFor={field}>{capitalize(field)}</InputLabel>
         <Input onChange={updateSearch} id={field} placeholder="Search"></Input>
       </div>
-      {status.sort}
-      <FontAwesomeIcon size="xs" icon={faSort} style={status.sort !== null ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
-      <FontAwesomeIcon size="xs" icon={faSortUp} style={status.sort !== true ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
-      <FontAwesomeIcon size="xs" icon={faSortDown} style={status.sort !== false ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
+      <FontAwesomeIcon size="sm" icon={faSort} style={status.sort !== null ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
+      <FontAwesomeIcon size="sm" icon={faSortUp} style={status.sort !== true ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
+      <FontAwesomeIcon size="sm" icon={faSortDown} style={status.sort !== false ? { display: 'none' } : { display: 'inline' }} onClick={updateSort} />
     </div>
   );
 }

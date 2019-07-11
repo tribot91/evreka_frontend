@@ -52,7 +52,8 @@ class RouteList extends Component {
                                 updateSearch={this.updateSearch(field)}
                                 field={field}
                                 status={this.state[field]}
-                                size="20" ></SearchField>)
+                                size={field !== 'vehicle' && field !== 'time' && field !== 'performance' ? 20 : 10} >
+                            </SearchField>)
                     }
                     <div style={{ width: '5%' }} />
                 </div>
