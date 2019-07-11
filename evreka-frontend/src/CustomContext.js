@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Modal from './SimpleModal';
 
-export default function CustomContext({ vehicle, name, driver }) {
+var CustomContext = ({ vehicle, name, driver }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     function handleClick(event) {
@@ -33,3 +33,5 @@ export default function CustomContext({ vehicle, name, driver }) {
         </div>
     );
 }
+
+export default CustomContext;

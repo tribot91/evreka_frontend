@@ -23,13 +23,13 @@ class App extends Component {
         <div style={{ padding: '8px 0', background: 'white', boxShadow: '0 -2px lightgray', display: this.state.mapview ? 'block' : 'none' }}>
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
           <Leaflet></Leaflet>
-          <div style={{ position: 'absolute', top: 28, left: '2.9vw', zIndex: 500, display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'absolute', top: 28, left: 40, zIndex: 500, display: 'flex', alignItems: 'center' }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
-          <div style={{ position: 'absolute', bottom: 28, left: '2.9vw', zIndex: 500 }}>
-            <div style={{width: '200px', height:'70px', backgroundColor: "rgb(250, 250, 250, 0.8)"}}>
+          <div style={{ position: 'absolute', bottom: 35, left: 26, zIndex: 500 }}>
+            <div style={{width: '200px', height:'70px', backgroundColor: "rgb(250, 250, 250, 0.85)"}}>
               <div>
                 12 Collected
               </div>
@@ -37,7 +37,7 @@ class App extends Component {
                 38 Remaining
               </div>
             </div>
-            <div style={{width: '200px', height:'40px', backgroundColor: "rgb(250, 250, 250, 0.8)", marginTop: '5px'}}>
+            <div style={{width: '200px', height:'40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px'}}>
               Map
             </div>
 

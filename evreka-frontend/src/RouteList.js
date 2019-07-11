@@ -29,6 +29,16 @@ class RouteList extends Component {
                 sort: sortType === 'sort' ? true : (sortType === 'sort-up' ? false : null)
             }
         })
+        Object.keys(this.state).forEach(field2 => {
+            if(field2 !== field) {
+                this.setState({
+                    [field2]: {
+                        text: this.state[field2].text,
+                        sort: null
+                    }
+                })
+            }
+        })
     }
 
     render() {

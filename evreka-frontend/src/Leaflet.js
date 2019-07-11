@@ -1,41 +1,17 @@
 import React, { Component, createRef } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
-// export default class Leaflet extends Component {
-//   state = {
-//     lat: 51.505,
-//     lng: -0.09,
-//     zoom: 4,
-//   }
-
-//   render() {
-//     const position = [this.state.lat, this.state.lng]
-//     return (
-//       <Map className='leaflet-container' center={position} zoom={this.state.zoom}>
-//         <TileLayer
-//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//         />
-//         <Marker position={position}>
-//           <Popup>
-//             A pretty CSS3 popup. <br /> Easily customizable.
-//           </Popup>
-//         </Marker>
-//       </Map>
-//     )
-//   }
-// }
-
 export default class Leaflet extends Component {
   state = {
     center: {
-      lat: 51.505,
-      lng: -0.09,
+        lat: 39.893894,
+        lng: 32.789437,
     },
     marker: {
-      lat: 51.505,
-      lng: -0.09,
+        lat: 39.887762,
+        lng: 32.796264,
     },
-    zoom: 4,
+    zoom: 16,
     draggable: true,
   }
   refmarker = createRef()

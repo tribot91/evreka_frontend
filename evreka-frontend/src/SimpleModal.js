@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SimpleModal({ vehicle, name, driver }) {
+var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
     let availableVehicles = ['4.5. Etap', 'Bahçeşehir', 'Başakşehir', 'Bşk.&Ağa.', 'Kayaşehir']
 
     const classes = useStyles();
@@ -52,6 +52,7 @@ export default function SimpleModal({ vehicle, name, driver }) {
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleClose}
+                ref={ref}
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h4 id="modal-title">{vehicle} - {name} - {driver}</h4>
@@ -75,4 +76,5 @@ export default function SimpleModal({ vehicle, name, driver }) {
             </Modal>
         </div>
     );
-}
+})
+export default SimpleModal;
