@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SimpleModal({ vehicle, name, driver }) {
-    console.log(vehicle)
     let availableVehicles = ['4.5. Etap', 'Bahçeşehir', 'Başakşehir', 'Bşk.&Ağa.', 'Kayaşehir']
 
     const classes = useStyles();

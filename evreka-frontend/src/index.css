@@ -7,6 +7,10 @@ body {
     margin-right: 10px;
 }
 
+.pr-10 {
+    padding-right: 10px;
+}
+
 .route {
     background: #fff;
     margin-bottom: 10px;
@@ -22,7 +26,18 @@ label {
     margin-bottom: 10px;
 }
 
-.lc { /* left-center */
+.lc {
+    /* left-center */
     align-items: center;
     display: flex;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 50px !important;
+}
+
+.leaflet-container {
+    height: 95vh;
+    width: 96vw;
+    margin: auto;
 }

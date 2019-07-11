@@ -36,9 +36,9 @@ class RouteList extends Component {
             .filter(route => !Object.keys(route).some(key => route[key].indexOf(this.state[key].text) === -1))
 
         Object.keys(this.state).forEach((key) => {
-            if (this.state[key].sort === true)
+            if (this.state[key].sort === null)
                 this.filteredList.sort((a, b) => a > b ? 1 : -1)
-            else if (this.state[key].sort === false)
+            else if (this.state[key].sort === true)
                 this.filteredList.reverse((a, b) => a > b ? 1 : -1)
         })
 
