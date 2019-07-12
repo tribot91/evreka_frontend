@@ -29,7 +29,7 @@ class App extends Component {
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
           <div style={{ position: 'absolute', bottom: 35, left: 26, zIndex: 500 }}>
-            <div style={{ width: '200px', height: '75px', backgroundColor: "rgb(250, 250, 250, 0.85)", boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
+            <div style={{ width: '200px', height: '75px', backgroundColor: "rgb(250, 250, 250, 0.85)", boxShadow: '0 0 5px gray', borderRadius: '3px' }}>
               <div>
                 12 Collected
               </div>
@@ -37,13 +37,13 @@ class App extends Component {
                 38 Remaining
               </div>
             </div>
-            <div style={{ width: '200px', height: '40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px', boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
+            <div style={{ width: '200px', height: '40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px', boxShadow: '0 0 5px gray', borderRadius: '3px' }}>
               Map
             </div>
           </div>
 
-          <div style={{ position: 'absolute', bottom: 35, left: 286, zIndex: 500, boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
-            <div style={{ width: '100%', height: '55px', backgroundColor: "rgb(250, 250, 250, 0.85)", padding: '10px' }}>
+          <div style={{ position: 'absolute', bottom: 35, left: 286, zIndex: 500 }}>
+            <div style={{ width: '100%', height: '48px', backgroundColor: "rgb(250, 250, 250, 0.85)", padding: '10px', boxShadow: 'grey 0px 0px 5px', borderRadius: '3px' }}>
               <Slider></Slider>
             </div>
           </div>

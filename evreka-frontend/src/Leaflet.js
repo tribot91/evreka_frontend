@@ -1,21 +1,21 @@
 import React, { Component, createRef } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
-import { marker, truck } from './CustomIcon';
+import { truck, icon } from './CustomIcon';
 
 export default class Leaflet extends Component {
   selectedTime = 1562900000;
 
-  dummyData = [
+  dummyVehicleData = [
     {
       time: 1562900000,
       vehicles: [
         {
-          device: 'Fenertepe',
+          name: 'Fenertepe',
           data: { position: [39.888, 32.796], collected: 10, remaining: 23 }
         },
         {
-          device: 'Kayaşehir',
+          name: 'Kayaşehir',
           data: { position: [39.893, 32.789], collected: 5, remaining: 12 }
         },
       ]
@@ -24,14 +24,41 @@ export default class Leaflet extends Component {
       time: 1562903600,
       vehicles: [
         {
-          device: 'Fenertepe',
+          name: 'Fenertepe',
           data: { position: [39.893, 32.789], collected: 12, remaining: 21 }
         },
         {
-          device: 'Kayaşehir',
+          name: 'Kayaşehir',
           data: { position: [39.893, 32.789], collected: 9, remaining: 8 }
         },
       ]
+    }
+  ]
+
+  dummyPackageData = [
+    {
+      name: 'Package 1',
+      amount: 5,
+      position: [39.888, 32.796],
+      collected: false
+    },
+    {
+      name: 'Package 2',
+      amount: 6,
+      position: [39.894, 32.788],
+      collected: false
+    },
+    {
+      name: 'Package 3',
+      amount: 6,
+      position: [39.895, 32.787],
+      collected: true
+    },
+    {
+      name: 'Package 4',
+      amount: 6,
+      position: [39.896, 32.790],
+      collected: false
     }
   ]
 
@@ -46,6 +73,7 @@ export default class Leaflet extends Component {
   refmarker = createRef()
 
   render() {
+
     const position = [this.state.center.lat, this.state.center.lng]
     setTimeout(() => {
       this.setState({ readyToRender: true });
@@ -53,23 +81,23 @@ export default class Leaflet extends Component {
     return (
       <Map center={position} zoom={this.state.zoom} ref="map">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {this.dummyData[0].vehicles.map((vehicle, index) =>
+        {this.dummyVehicleData[0].vehicles.map((vehicle, index) =>
           <Marker
             key={index}
             position={vehicle.data.position}
             ref={this.refmarker}
             icon={truck}>
-            <Popup minWidth={90}></Popup>
+            <Popup>{vehicle.name}</Popup>
           </Marker>)
         }
-        
-        {this.dummyData[0].vehicles.map((vehicle, index) =>
+
+        {this.dummyPackageData.map((pack, index) =>
           <Marker
             key={index}
-            position={vehicle.data.position}
+            position={pack.position}
             ref={this.refmarker}
-            icon={truck}>
-            <Popup minWidth={90}></Popup>
+            icon={pack.collected ? icon(5, true) : icon(5, false)}>
+            <Popup>{pack.name}</Popup>
           </Marker>)
         }
       </Map>
