@@ -56,7 +56,7 @@ var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
             >
                 <div style={modalStyle} className={classes.paper}>
                     <h4 id="modal-title">{vehicle} - {name} - {driver}</h4>
-                    <div style={{ background: '#E9ECF5', padding: '10px' }}>
+                    <div style={{ background: '#E9ECF5', padding: '10px', height: '90%' }}>
                         <h4 style={{ margin: 0 }}>Change Vehicle</h4>
 
                         <div style={{}}>
