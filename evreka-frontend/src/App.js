@@ -3,6 +3,7 @@ import DatePickers from './Datepickers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMap, faPlusCircle, faArrowCircleRight, faBars, faMapMarker } from '@fortawesome/free-solid-svg-icons'
 import RouteList from './RouteList';
+import Slider from './Slider';
 import Leaflet from './Leaflet';
 
 class App extends Component {
@@ -20,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{ margin: '10px' }}>
-        {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', boxShadow: '0 -2px lightgray', overflowY: 'hidden' }}>
+        {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', overflowY: 'hidden' }}>
           <Leaflet></Leaflet>
           <div style={{ position: 'absolute', top: 28, left: 40, zIndex: 500, display: 'flex', alignItems: 'center' }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
@@ -28,7 +29,7 @@ class App extends Component {
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
           <div style={{ position: 'absolute', bottom: 35, left: 26, zIndex: 500 }}>
-            <div style={{ width: '200px', height: '70px', backgroundColor: "rgb(250, 250, 250, 0.85)" }}>
+            <div style={{ width: '200px', height: '75px', backgroundColor: "rgb(250, 250, 250, 0.85)", boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
               <div>
                 12 Collected
               </div>
@@ -36,16 +37,17 @@ class App extends Component {
                 38 Remaining
               </div>
             </div>
-            <div style={{ width: '200px', height: '40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px' }}>
+            <div style={{ width: '200px', height: '40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px', boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
               Map
             </div>
           </div>
 
-          <div style={{ position: 'absolute', bottom: 28, left: 286, zIndex: 500 }}>
-            <div style={{ width: '200px', height: '70px', }}> {/*backgroundColor: "rgb(250, 250, 250, 0.85)"*/}
-              Test
+          <div style={{ position: 'absolute', bottom: 35, left: 286, zIndex: 500, boxShadow: '0 0 5px gray', borderRadius: '2px' }}>
+            <div style={{ width: '100%', height: '55px', backgroundColor: "rgb(250, 250, 250, 0.85)", padding: '10px' }}>
+              <Slider></Slider>
             </div>
           </div>
+
         </div> : null}
         <div style={{ margin: '10px', display: !this.state.mapview ? 'block' : 'none' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

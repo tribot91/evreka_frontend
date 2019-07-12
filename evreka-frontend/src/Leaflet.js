@@ -1,35 +1,35 @@
 import React, { Component, createRef } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
-import { icon } from './CustomIcon';
+import { marker, truck } from './CustomIcon';
 
-// lat: 39.896,
-// lng: 32.7976
 export default class Leaflet extends Component {
+  selectedTime = 1562900000;
+
   dummyData = [
     {
-      time: '12:00',
+      time: 1562900000,
       vehicles: [
         {
           device: 'Fenertepe',
-          data: { lat: 39.888, lng: 32.796, collected: 10, remaining: 23 }
+          data: { position: [39.888, 32.796], collected: 10, remaining: 23 }
         },
         {
           device: 'Kayaşehir',
-          data: { lat: 39.893, lng: 32.789, collected: 5, remaining: 12 }
+          data: { position: [39.893, 32.789], collected: 5, remaining: 12 }
         },
       ]
     },
     {
-      time: '12:10',
+      time: 1562903600,
       vehicles: [
         {
           device: 'Fenertepe',
-          data: { lat: 39.893, lng: 32.789, collected: 10, remaining: 23 }
+          data: { position: [39.893, 32.789], collected: 12, remaining: 21 }
         },
         {
           device: 'Kayaşehir',
-          data: { lat: 39.893, lng: 32.789, collected: 5, remaining: 12 }
+          data: { position: [39.893, 32.789], collected: 9, remaining: 8 }
         },
       ]
     }
@@ -40,10 +40,6 @@ export default class Leaflet extends Component {
       lat: 39.893894,
       lng: 32.789437
     },
-    marker: {
-      lat: 39.888,
-      lng: 32.796
-    },
     zoom: 15,
     draggable: true,
   }
@@ -51,19 +47,31 @@ export default class Leaflet extends Component {
 
   render() {
     const position = [this.state.center.lat, this.state.center.lng]
-    const markerPosition = [this.state.marker.lat, this.state.marker.lng]
     setTimeout(() => {
       this.setState({ readyToRender: true });
     }, 0);
     return (
       <Map center={position} zoom={this.state.zoom} ref="map">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker
-          position={markerPosition}
-          ref={this.refmarker}
-          icon={icon}>
-          <Popup minWidth={90}></Popup>
-        </Marker>
+        {this.dummyData[0].vehicles.map((vehicle, index) =>
+          <Marker
+            key={index}
+            position={vehicle.data.position}
+            ref={this.refmarker}
+            icon={truck}>
+            <Popup minWidth={90}></Popup>
+          </Marker>)
+        }
+        
+        {this.dummyData[0].vehicles.map((vehicle, index) =>
+          <Marker
+            key={index}
+            position={vehicle.data.position}
+            ref={this.refmarker}
+            icon={truck}>
+            <Popup minWidth={90}></Popup>
+          </Marker>)
+        }
       </Map>
     )
   }
