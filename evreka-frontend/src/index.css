@@ -50,3 +50,8 @@ label {
 #modal-title {
     margin-top: 0 !important;
 }
+
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+}
