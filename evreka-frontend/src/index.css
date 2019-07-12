@@ -26,8 +26,8 @@ label {
     margin-bottom: 10px;
 }
 
+/* left-center */
 .lc {
-    /* left-center */
     align-items: center;
     display: flex;
 }
@@ -38,7 +38,7 @@ label {
 
 .leaflet-container {
     height: 95vh;
-    width: 96vw;
+    width: 100%;
     margin: auto;
 }
 
