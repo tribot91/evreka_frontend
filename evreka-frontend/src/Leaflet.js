@@ -47,14 +47,14 @@ export default class Leaflet extends Component {
     return (
       <Map center={position} zoom={this.state.zoom} ref="map">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        {this.props.dummyVehicleData[this.props.selectedFrame].vehicles.map((vehicle, index) =>
+        {this.props.dummyVehicleData[this.props.selectedFrame] ? this.props.dummyVehicleData[this.props.selectedFrame].vehicles.map((vehicle, index) =>
           <Marker
             key={index}
             position={vehicle.data.position}
             ref={this.refmarker}
             icon={truck}>
             <Popup>{vehicle.name}</Popup>
-          </Marker>)
+          </Marker>) : null
         }
 
         {this.dummyPackageData.map((pack, index) =>

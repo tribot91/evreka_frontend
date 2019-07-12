@@ -65,7 +65,7 @@ var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
                                     <div>
                                         {vehicle}
                                     </div>
-                                    <div style={{ background: 'dimgray', padding: '2px 5px', borderRadius: '2px' }}>
+                                    <div className='br1' style={{ background: 'dimgray', padding: '2px 5px' }}>
                                         <FontAwesomeIcon size="xs" color='white' icon={faExchangeAlt} />
                                     </div>
                                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
@@ -24,7 +24,7 @@ export default function DiscreteSlider(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Slider
+            {props.marks.length ? <Slider
                 onChange={handleChange}
                 defaultValue={props.marks[0].value}
                 step={null}
@@ -32,7 +32,8 @@ export default function DiscreteSlider(props) {
                 max={props.marks[props.marks.length - 1].value}
                 marks={props.marks}
                 value={props.marks[props.selectedFrame].value}
-            />
+            /> : null}
+
             <div className={classes.margin} />
         </div>
     );

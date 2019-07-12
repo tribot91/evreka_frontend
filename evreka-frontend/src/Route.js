@@ -15,7 +15,7 @@ const Route = ({ name, vehicle, time, driver, helper, performance, status }) => 
       <div className="w-20 mr-10 lc">{helper}</div>
       <div className="w-10 mr-10 lc">{performance}</div>
       <div className="w-20 mr-10 lc">{status}</div>
-      <div style={{ width: '5%' }}>
+      <div style={{ width: '5%', alignSelf: 'center' }}>
         <FontAwesomeIcon size="lg" icon={faBus} />
       </div>
     </div>

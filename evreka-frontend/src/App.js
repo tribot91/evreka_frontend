@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePickers from './Datepickers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
+import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause, faFileAlt } from '@fortawesome/free-solid-svg-icons'
 import RouteList from './RouteList';
 import Slider from './DiscreteSlider';
 import Leaflet from './Leaflet';
@@ -15,7 +15,7 @@ class App extends Component {
       mapview: false,
       routelist: [
         { name: "13:30 Vardiyası", vehicle: "Fenertepe", time: "13:12", driver: "Tanır Nalbant", helper: "-", performance: "66/103", status: "Dispatched" },
-        { name: "13:30 Vardiyası", vehicle: "Boğazköy", time: "13:11", driver: "Selçuk Yurt", helper: "-", performance: "58/85", status: "Finished" },
+        { name: "13:30 Vardiyası", vehicle: "Boğazköy", time: "13:11", driver: "Selçuk Yurt", helper: "-", performance: "78/85", status: "Finished" },
         { name: "07:30 Vardiyası", vehicle: "Başakşehir", time: "07:30", driver: "Emri Akça", helper: "-", performance: "108/148", status: "Finished" }
       ],
       play: false,
@@ -79,25 +79,27 @@ class App extends Component {
   }
 
   render() {
+    // dummyVehicleData
+
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
       return { key: index, value: dataPerTime.time, label: moment.unix(dataPerTime.time).format("HH:mm") }
     })
 
     return (
-      <div className="App" style={{ margin: '10px' }}>
+      <div className="App m-10">
         {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', overflowY: 'hidden' }}>
           <Leaflet
             dummyVehicleData={this.state.dummyVehicleData}
             selectedFrame={this.state.selectedFrame}
           >
           </Leaflet>
-          <div style={{ position: 'absolute', top: 28, left: 40, zIndex: 500, display: 'flex', alignItems: 'center' }}>
+          <div className='z-up flex-center' style={{ top: 28, left: 40 }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
-          <div style={{ position: 'absolute', bottom: 35, left: 26, zIndex: 500 }}>
-            <div style={{ width: '200px', height: '75px', backgroundColor: "rgb(250, 250, 250, 0.85)", boxShadow: '0 0 5px gray', borderRadius: '3px' }}>
+          <div className="z-up" style={{ bottom: 35, left: 26 }}>
+            <div className="box br1" style={{ width: '200px', height: '75px' }}>
               <div>
                 12 Collected
               </div>
@@ -105,14 +107,14 @@ class App extends Component {
                 38 Remaining
               </div>
             </div>
-            <div style={{ width: '200px', height: '40px', backgroundColor: "rgb(250, 250, 250, 0.85)", marginTop: '5px', boxShadow: '0 0 5px gray', borderRadius: '3px' }}>
+            <div className="box br1" style={{ width: '200px', height: '40px', marginTop: '5px' }}>
               Map
             </div>
           </div>
 
-          <div style={{ position: 'absolute', bottom: 35, left: 286, zIndex: 500 }}>
-            <div style={{ display: 'flex', width: '103%', height: '58px', backgroundColor: "rgb(250, 250, 250, 0.85)", padding: '10px', boxShadow: 'grey 0px 0px 5px', borderRadius: '3px' }}>
-              <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={!this.state.play ? faPlay : faPause} onClick={() => this.setState({ play: !this.state.play })} style={{ padding: '0 30px 0 10px' }} />
+          <div className="z-up" style={{ bottom: 35, left: 286 }}>
+            <div className="box br1" style={{ display: 'flex', width: '103%', height: '70px', padding: '10px' }}>
+              <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={!this.state.play ? faPlay : faPause} onClick={() => this.setState({ play: !this.state.play })} style={{ padding: '15px 30px 0 10px' }} />
               <Slider
                 dummyVehicleData={this.state.dummyVehicleData}
                 marks={marks}
@@ -138,9 +140,9 @@ class App extends Component {
           </div>
 
         </div> : null}
-        {!this.state.mapview ? <div style={{ margin: '10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+        {!this.state.mapview ? <div className="m-10">
+          <div className="lc" style={{ justifyContent: 'space-between' }}>
+            <div className='flex-center'>
               <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
               <DatePickers defaultValue={this.state.date}></DatePickers>
               <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
@@ -148,8 +150,12 @@ class App extends Component {
             <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} />
           </div>
 
-          <div style={{ margin: '20px 0' }}>
-            Routes
+          <div style={{ margin: '20px 0 10px' }}>
+            RouteList
+          </div>
+          <div className='flex-center' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
+            <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{paddingRight: '2px'}} />
+            Create Report
           </div>
           <RouteList routelist={this.state.routelist}></RouteList>
         </div> : null}

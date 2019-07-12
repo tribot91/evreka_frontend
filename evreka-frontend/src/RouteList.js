@@ -46,15 +46,15 @@ class RouteList extends Component {
             .filter(route => !Object.keys(route).some(key => route[key].indexOf(this.state[key].text) === -1))
 
         Object.keys(this.state).forEach((key) => {
-            if (this.state[key].sort === null)
-                this.filteredList.sort((a, b) => a > b ? 1 : -1)
-            else if (this.state[key].sort === true)
-                this.filteredList.reverse((a, b) => a > b ? 1 : -1)
+            if (this.state[key].sort === true)
+                this.filteredList.sort((a, b) => a[key] > b[key] ? 1 : -1)
+            else if (this.state[key].sort === false)
+                this.filteredList.sort((a, b) => a[key] < b[key] ? 1 : -1)
         })
 
         return (
             <div>
-                <div style={{ display: 'flex', marginBottom: '10px' }}>
+                <div className="flex" style={{ margin: '0 10px 10px' }}>
                     {
                         Object.keys(this.state).map((field, index) =>
                             <SearchField key={index}
