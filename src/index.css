@@ -96,46 +96,46 @@ label {
 }
 
 .MuiSlider-mark:after {
-    content:url('./img/circle.png');
-    position:relative;
+    content: url('./img/circle.png');
+    position: absolute;
     display: inline-block;
-    z-index:0;
-    top:-522px;
-    right:261px;
+    z-index: 0;
+    top: -263px;
+    right: -261px;
     transform: scale(0.025);
     border-radius: 50%;
     box-shadow: 1px 1px 55px gray;
 }
 
 .MuiSlider-mark:not(:nth-child(0)):before {
-    content:url('./img/bus-gray.png');
-    position:relative;
+    content: url('./img/bus-gray.png');
+    position: absolute;
     display: inline-block;
-    z-index:100000;
-    top:-110px;
-    right:128px;
+    z-index: 10000;
+    top: -110px;
+    right: -128px;
     transform: scale(0.1);
 }
 
 .MuiSlider-mark:nth-child(4):before {
-    content:url('./img/green-flag.png');
-    position:relative;
+    content: url('./img/green-flag.png');
+    position: absolute;
     display: inline-block;
-    z-index:100000;
-    top:-110px;
-    right:128px;
+    z-index: 10000;
+    top: -110px;
+    right: -128px;
     transform: scale(0.1);
 }
 
 .last-element:before {
-    content:url('./img/finish-flag.png') !important;
-    top:-345px !important;
-    right:375px !important;
+    content: url('./img/finish-flag.png') !important;
+    top: -345px !important;
+    right: -375px !important;
     transform: scale(0.03) !important;
 }
 
-label + .WithStyles\(ForwardRef\(InputBase\)\)-root-41 {
-    margin-top: 0;
+label+.MuiInputBase-root {
+    margin-top: 0 !important;
 }
 
 .dropdown-button {
@@ -144,4 +144,43 @@ label + .WithStyles\(ForwardRef\(InputBase\)\)-root-41 {
     border-radius: 3px !important;
     padding: 2px 5px !important;
     margin: 0 5px !important;
+}
+
+.slider>div>div {
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 960px) {
+    .performance {
+        display: none !important;
+    }
+
+    .helper {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .name {
+        display: none !important;
+    }
+
+    .status {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .left-box {
+        display: none !important;
+    }
+
+    .right-box {
+        display: none !important;
+    }
+
+    .slider {
+        left: 5vw !important;
+        width: 90vw !important;
+    }
 }

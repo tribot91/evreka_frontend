@@ -34,13 +34,9 @@ const BootstrapInput = withStyles(theme => ({
 
 const SearchField = ({ status, field, size, updateSearch, updateSort }) => {
   return (
-    <div className={"w-" + size + " mr-10 flex"}>
+    <div className={"w-" + size + " mr-10 flex " + field}>
       <div>
         <InputLabel shrink={true} htmlFor={field}>{capitalize(field)}</InputLabel>
-        {/* <Input
-          onChange={updateSearch}
-          id={field}
-          placeholder="Search"></Input> */}
           <BootstrapInput
           onChange={updateSearch}
           id={field}

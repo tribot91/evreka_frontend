@@ -54,7 +54,7 @@ class RouteList extends Component {
 
         return (
             <div>
-                <div className="flex" style={{ margin: '0 10px 10px' }}>
+                <div className="flex-sb" style={{ margin: '0 10px 10px' }}>
                     {
                         Object.keys(this.state).map((field, index) =>
                             <SearchField key={index}

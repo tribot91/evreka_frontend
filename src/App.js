@@ -17,7 +17,7 @@ class App extends Component {
       routelist: [
         { name: "13:30 Vardiyası", vehicle: "Fenertepe", time: "13:12", driver: "Tanır Nalbant", helper: "-", performance: "66/103", status: "Dispatched" },
         { name: "13:30 Vardiyası", vehicle: "Boğazköy", time: "13:11", driver: "Selçuk Yurt", helper: "-", performance: "78/85", status: "Finished" },
-        { name: "07:30 Vardiyası", vehicle: "Başakşehir", time: "07:30", driver: "Emri Akça", helper: "-", performance: "108/148", status: "Finished" }
+        { name: "07:30 Vardiyası", vehicle: "Başakşehir", time: "07:30", driver: "Emri Akça", helper: "-", performance: "108/148", status: "Finished" },
       ],
       play: false,
       selectedVehicle: null,
@@ -194,8 +194,8 @@ class App extends Component {
 
   changeVehicle = (driver, vehicle) => {
     this.state.routelist.forEach((newRoute, index) => {
-      if (newRoute.driver === driver){
-        let newState = {...this.state}
+      if (newRoute.driver === driver) {
+        let newState = { ...this.state }
         newState.routelist[index].vehicle = vehicle
         this.setState({ ...newState })
       }
@@ -205,7 +205,7 @@ class App extends Component {
   componentDidUpdate() {
     var sliderMarks = document.getElementsByClassName('MuiSlider-mark');
     var div = sliderMarks[sliderMarks.length - 1];
-    if(div)
+    if (div)
       div.className += ' last-element'
   }
 
@@ -218,7 +218,7 @@ class App extends Component {
     return (
       <div className="App m-10">
         {/* Dashboard */}
-        {!this.state.mapview ? <div className="m-10">
+        {!this.state.mapview ? <div style={{margin: '10px 5px'}}>
           <div className="lc" style={{ justifyContent: 'space-between' }}>
             <div className='lc'>
               <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
@@ -251,8 +251,8 @@ class App extends Component {
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
-          <div className="z-up" style={{ bottom: 35, left: 26 }}>
-            <div className="box box-helper br1" style={{ width: '200px', height: '75px' }}>
+          <div className="z-up left-box" style={{ bottom: 35, left: 26, width: '20vw' }}>
+            <div className="box box-helper br1" style={{ width: '100%', height: '75px' }}>
               <div className="flex-sb">
                 <div className="w-40 lc" style={{ justifyContent: "space-evenly" }}>
                   <FontAwesomeIcon color='dimgray' size="lg" icon={faCheck} />
@@ -268,12 +268,12 @@ class App extends Component {
                 <div className="w-60 lc jc-center" style={{ fontSize: '70%' }}>Remaining</div>
               </div>
             </div>
-            <div className="box br1 lc jc-center" style={{ width: '200px', height: '40px', marginTop: '5px' }}>
+            <div className="box br1 lc jc-center" style={{ width: '100%', height: '40px', marginTop: '5px' }}>
               Map
             </div>
           </div>
-          <div className="z-up" style={{ bottom: 35, right: 26 }}>
-            <div className="box br1" style={{ width: '350px', height: '150px' }}>
+          <div className="z-up right-box" style={{ bottom: 35, right: 26, width: '20vw',}}>
+            <div className="box br1" style={{ height: '150px' }}>
               <div className="lc p-10" style={{ justifyContent: 'space-between' }}>
                 <FontAwesomeIcon color='darkgray' size="lg" icon={faFilter} />
                 <div style={{ width: '50%', fontSize: '12px' }}>
@@ -314,8 +314,8 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="z-up" style={{ bottom: 35, left: 286 }}>
-            <div className="box br1" style={{ display: 'flex', width: '103%', height: '70px', padding: '10px' }}>
+          <div className="z-up slider" style={{ bottom: 35, left: '24vw', width: '50vw' }}>
+            <div className="box br1" style={{ display: 'flex', width: '103%', maxWidth: '100%', height: '70px', padding: '10px' }}>
               <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={!this.state.play ? faPlay : faPause} onClick={() => this.setState({ play: !this.state.play })} style={{ padding: '15px 30px 0 10px' }} />
               <Slider
                 dummyVehicleData={this.state.dummyVehicleData}
