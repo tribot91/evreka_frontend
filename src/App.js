@@ -202,6 +202,13 @@ class App extends Component {
     })
   }
 
+  componentDidUpdate() {
+    var sliderMarks = document.getElementsByClassName('MuiSlider-mark');
+    var div = sliderMarks[sliderMarks.length - 1];
+    if(div)
+      div.className += ' last-element'
+  }
+
 
   render() {
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
@@ -210,6 +217,7 @@ class App extends Component {
 
     return (
       <div className="App m-10">
+        {/* Dashboard */}
         {!this.state.mapview ? <div className="m-10">
           <div className="lc" style={{ justifyContent: 'space-between' }}>
             <div className='lc'>
@@ -230,6 +238,7 @@ class App extends Component {
           <RouteList routelist={this.state.routelist} changeVehicle={(driver, newVehicle) => this.changeVehicle(driver, newVehicle)}></RouteList>
         </div> : null}
 
+        {/* Map view */}
         {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', overflowY: 'hidden' }}>
           <Leaflet
             selectedVehicle={this.state.selectedVehicle}
@@ -264,11 +273,11 @@ class App extends Component {
             </div>
           </div>
           <div className="z-up" style={{ bottom: 35, right: 26 }}>
-            <div className="box br1" style={{ width: '350px', height: '160px' }}>
+            <div className="box br1" style={{ width: '350px', height: '150px' }}>
               <div className="lc p-10" style={{ justifyContent: 'space-between' }}>
-                <FontAwesomeIcon color='dimgray' size="lg" icon={faFilter} />
+                <FontAwesomeIcon color='darkgray' size="lg" icon={faFilter} />
                 <div style={{ width: '50%', fontSize: '12px' }}>
-                  <div style={{ fontWeight: '600' }}>
+                  <div style={{ fontWeight: '600', paddingBottom: '5px' }}>
                     Filter
                 </div>
                   <div>

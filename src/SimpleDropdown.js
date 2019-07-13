@@ -32,7 +32,7 @@ export default function ClickAway(props) {
         <div className={classes.root}>
             <ClickAwayListener onClickAway={handleClickAway}>
                 <div>
-                    <Button onClick={handleClick} style={{ textTransform: 'Capitalize', width: '100%' }}>
+                    <Button className='dropdown-button' onClick={handleClick} style={{ textTransform: 'Capitalize', width: '100%' }}>
                         {props.selectedVehicle === null ? "Select Vehicle" : `${props.selectedVehicle} selected`}
                     </Button>
                     {open ? (
