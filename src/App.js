@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePickers from './Datepickers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause, faFileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause, faFileAlt, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import RouteList from './RouteList';
 import Slider from './DiscreteSlider';
 import Leaflet from './Leaflet';
@@ -27,10 +27,12 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
+              active: 'move',
               data: { position: [39.888, 32.796], collected: 0, remaining: 26 }
             },
             {
               name: 'Kayaşehir',
+              active: 'move',
               data: { position: [39.893, 32.789], collected: 0, remaining: 20 }
             },
           ],
@@ -66,11 +68,13 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
+              active: 'pending',
               data: { position: [39.893, 32.789], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
-              data: { position: [39.883, 32.789], collected: 0, remaining: 20 }
+              active: 'move',
+              data: { position: [39.895, 32.788], collected: 0, remaining: 20 }
             },
           ],
           dummyPackageData: [
@@ -105,10 +109,12 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
+              active: 'move',
               data: { position: [39.894, 32.788], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
+              active: 'move',
               data: { position: [39.895, 32.787], collected: 8, remaining: 12 }
             },
           ],
@@ -144,10 +150,12 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
+              active: 'inactive',
               data: { position: [39.895, 32.786], collected: 26, remaining: 0 }
             },
             {
               name: 'Kayaşehir',
+              active: 'inactive',
               data: { position: [39.891, 32.783], collected: 20, remaining: 0 }
             },
           ],
@@ -183,8 +191,6 @@ class App extends Component {
   }
 
   render() {
-    // dummyVehicleData
-
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
       return { key: index, value: dataPerTime.time, label: moment.unix(dataPerTime.time).format("HH:mm") }
     })
@@ -197,21 +203,29 @@ class App extends Component {
             selectedFrame={this.state.selectedFrame}
           >
           </Leaflet>
-          <div className='z-up flex-center' style={{ top: 28, left: 40 }}>
+          <div className='z-up lc' style={{ top: 28, left: 40 }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>
           <div className="z-up" style={{ bottom: 35, left: 26 }}>
-            <div className="box br1" style={{ width: '200px', height: '75px' }}>
-              <div>
-                12 Collected
+            <div className="box box-helper br1" style={{ width: '200px', height: '75px' }}>
+              <div className="flex-sb">
+                <div className="w-40 lc" style={{ justifyContent: "space-evenly" }}>
+                  <FontAwesomeIcon color='dimgray' size="lg" icon={faCheck} />
+                  {this.state.dummyVehicleData[this.state.selectedFrame].dummyPackageData.reduce((total, num) => num.collected ? total + num.amount : total, 0)}
+                </div>
+                <div className="w-60 lc jc-center" style={{fontSize: '70%'}}>Collected</div>
               </div>
-              <div>
-                38 Remaining
+              <div className="flex-sb">
+                <div className="w-40 lc" style={{ justifyContent: "space-evenly" }}>
+                  <FontAwesomeIcon color='rgb(68, 82, 117)' size="lg" icon={faTimes} />
+                  {this.state.dummyVehicleData[this.state.selectedFrame].dummyPackageData.reduce((total, num) => num.collected ? total : total + num.amount, 0)}
+                </div>
+                <div className="w-60 lc jc-center" style={{fontSize: '70%'}}>Remaining</div>
               </div>
             </div>
-            <div className="box br1" style={{ width: '200px', height: '40px', marginTop: '5px' }}>
+            <div className="box br1 lc jc-center" style={{ width: '200px', height: '40px', marginTop: '5px' }}>
               Map
             </div>
           </div>
@@ -246,7 +260,7 @@ class App extends Component {
         </div> : null}
         {!this.state.mapview ? <div className="m-10">
           <div className="lc" style={{ justifyContent: 'space-between' }}>
-            <div className='flex-center'>
+            <div className='lc'>
               <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
               <DatePickers defaultValue={this.state.date}></DatePickers>
               <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
@@ -257,7 +271,7 @@ class App extends Component {
           <div style={{ margin: '20px 0 10px' }}>
             RouteList
           </div>
-          <div className='flex-center' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
+          <div className='lc' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{ paddingRight: '2px' }} />
             Create Report
           </div>

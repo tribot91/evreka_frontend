@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
-import { truck, icon } from './CustomIcon';
+import { bus, icon } from './CustomIcon';
 import 'leaflet/dist/leaflet.css';
 
 export default class Leaflet extends Component {
@@ -25,7 +25,7 @@ export default class Leaflet extends Component {
             key={index}
             position={vehicle.data.position}
             ref={this.refmarker}
-            icon={truck}>
+            icon={bus(vehicle.active === 'move' ? 'green' : (vehicle.active === 'pending' ? 'red' : 'gray'))}>
             <Popup>{vehicle.name}</Popup>
           </Marker>) : null
         }

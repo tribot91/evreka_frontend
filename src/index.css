@@ -42,14 +42,24 @@ label {
     align-items: center;
 }
 
+.jc-center {
+    justify-content: center;
+}
+
 .box {
     background-color: rgb(250, 250, 250, 0.85);
     box-shadow: 0 0 5px gray;
 }
 
-.flex-center {
+.box-helper {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.flex-sb {
+    display: flex;
+    justify-content: space-between;
 }
 
 .leaflet-top .leaflet-control {
