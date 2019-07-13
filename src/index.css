@@ -150,6 +150,16 @@ label+.MuiInputBase-root {
     margin-right: 10px;
 }
 
+.options:hover {
+    background: lightgray;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+/* Media queries */
+
 @media only screen and (max-width: 960px) {
     .performance {
         display: none !important;
@@ -158,6 +168,26 @@ label+.MuiInputBase-root {
     .helper {
         display: none !important;
     }
+
+    .name {
+        width: 20% !important;
+    }
+
+    .vehicle {
+        width: 20% !important;
+    }
+
+    .time {
+        width: 10% !important;
+    }
+
+    .driver {
+        width: 20% !important;
+    }
+
+    .status {
+        width: 20% !important;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -165,8 +195,20 @@ label+.MuiInputBase-root {
         display: none !important;
     }
 
-    .status {
+    .driver {
         display: none !important;
+    }
+
+    .vehicle {
+        width: 40% !important;
+    }
+
+    .time {
+        width: 20% !important;
+    }
+
+    .status {
+        width: 30% !important;
     }
 }
 

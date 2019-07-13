@@ -37,17 +37,21 @@ export default function ClickAway(props) {
                     </Button>
                     {open ? (
                         <Paper className={classes.paper}>
-                            <div onClick={() => {
-                                props.selectVehicle(null);
-                                handleClickAway()
-                            }}>
+                            <div className="options"
+                                style={{ padding: '2px 10px' }}
+                                onClick={() => {
+                                    props.selectVehicle(null);
+                                    handleClickAway()
+                                }}>
                                 Select All
                             </div>
                             {props.vehicles.map(vehicle =>
-                                <div onClick={() => {
-                                    props.selectVehicle(vehicle.name);
-                                    handleClickAway()
-                                }}>
+                                <div className="options"
+                                    style={{ padding: '2px 10px' }}
+                                    onClick={() => {
+                                        props.selectVehicle(vehicle.name);
+                                        handleClickAway()
+                                    }}>
                                     {vehicle.name}
                                 </div>)}
                         </Paper>

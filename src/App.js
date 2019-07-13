@@ -49,7 +49,7 @@ class App extends Component {
             {
               name: 'Package 2',
               amount: 8,
-              position: [39.894, 32.788],
+              position: [39.88728, 32.78265],
               collected: false
             },
             {
@@ -72,12 +72,12 @@ class App extends Component {
             {
               name: 'Fenertepe',
               active: 'pending',
-              data: { position: [39.893, 32.789], collected: 1, remaining: 25 }
+              data: { position: [39.89271, 32.78885], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
               active: 'move',
-              data: { position: [39.895, 32.788], collected: 0, remaining: 20 }
+              data: { position: [39.88759, 32.78355], collected: 0, remaining: 20 }
             },
           ],
           dummyPackageData: [
@@ -90,7 +90,7 @@ class App extends Component {
             {
               name: 'Package 2',
               amount: 8,
-              position: [39.894, 32.788],
+              position: [39.88728, 32.78265],
               collected: false
             },
             {
@@ -113,12 +113,12 @@ class App extends Component {
             {
               name: 'Fenertepe',
               active: 'move',
-              data: { position: [39.894, 32.788], collected: 1, remaining: 25 }
+              data: { position: [39.895, 32.787], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
               active: 'move',
-              data: { position: [39.895, 32.787], collected: 8, remaining: 12 }
+              data: { position: [39.896, 32.795], collected: 8, remaining: 12 }
             },
           ],
           dummyPackageData: [
@@ -131,7 +131,7 @@ class App extends Component {
             {
               name: 'Package 2',
               amount: 8,
-              position: [39.894, 32.788],
+              position: [39.88728, 32.78265],
               collected: true
             },
             {
@@ -154,12 +154,12 @@ class App extends Component {
             {
               name: 'Fenertepe',
               active: 'inactive',
-              data: { position: [39.895, 32.786], collected: 26, remaining: 0 }
+              data: { position: [39.89670, 32.77699], collected: 26, remaining: 0 }
             },
             {
               name: 'Kayaşehir',
               active: 'inactive',
-              data: { position: [39.891, 32.783], collected: 20, remaining: 0 }
+              data: { position: [39.89684, 32.77502], collected: 20, remaining: 0 }
             },
           ],
           dummyPackageData: [
@@ -172,7 +172,7 @@ class App extends Component {
             {
               name: 'Package 2',
               amount: 8,
-              position: [39.894, 32.788],
+              position: [39.88728, 32.78265],
               collected: true
             },
             {
@@ -222,7 +222,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.routelist)
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
       return { key: index, value: dataPerTime.time, label: moment.unix(dataPerTime.time).format("HH:mm") }
     })
@@ -233,7 +232,7 @@ class App extends Component {
         {!this.state.mapview ? <div style={{ margin: '10px 5px' }}>
           <div className="lc" style={{ justifyContent: 'space-between' }}>
             <div className='lc'>
-              <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
+              <FontAwesomeIcon className='pr-10 cursor' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
               <DatePickers defaultValue={this.state.date}></DatePickers>
               <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
             </div>
@@ -259,7 +258,7 @@ class App extends Component {
           >
           </Leaflet>
           <div className='z-up lc' style={{ top: 28, left: 38 }}>
-            <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
+            <FontAwesomeIcon className='pr-10 cursor' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
           </div>

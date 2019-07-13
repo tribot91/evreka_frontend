@@ -7,7 +7,7 @@ const Route = ({ name, vehicle, time, driver, helper, performance, status, chang
   return (
     <div className="route flex-sb">
       <div className="w-20 mr-10 b lc name">{name}</div>
-      <div className="w-10 mr-10 lc">
+      <div className="w-10 mr-10 lc vehicle">
         <CustomContext changeVehicle={changeVehicle} vehicle={vehicle} name={name} driver={driver}></CustomContext>
       </div>
       <div className="w-10 mr-10 lc time">{time}</div>
