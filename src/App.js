@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DatePickers from './Datepickers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause, faFileAlt, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faMap, faPlusCircle, faArrowCircleRight, faBars, faPlay, faPause, faFileAlt, faCheck, faTimes, faFilter } from '@fortawesome/free-solid-svg-icons'
 import RouteList from './RouteList';
 import Slider from './DiscreteSlider';
+import Dropdown from './SimpleDropdown';
 import Leaflet from './Leaflet';
 import moment from 'moment';
 
@@ -19,6 +20,7 @@ class App extends Component {
         { name: "07:30 Vardiyası", vehicle: "Başakşehir", time: "07:30", driver: "Emri Akça", helper: "-", performance: "108/148", status: "Finished" }
       ],
       play: false,
+      selectedVehicle: null,
       selectedFrame: 0,
       selectedTime: 1562900000,
       dummyVehicleData: [
@@ -199,11 +201,12 @@ class App extends Component {
       <div className="App m-10">
         {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', overflowY: 'hidden' }}>
           <Leaflet
+            selectedVehicle={this.state.selectedVehicle}
             dummyVehicleData={this.state.dummyVehicleData}
             selectedFrame={this.state.selectedFrame}
           >
           </Leaflet>
-          <div className='z-up lc' style={{ top: 28, left: 40 }}>
+          <div className='z-up lc' style={{ top: 28, left: 30 }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
@@ -215,18 +218,59 @@ class App extends Component {
                   <FontAwesomeIcon color='dimgray' size="lg" icon={faCheck} />
                   {this.state.dummyVehicleData[this.state.selectedFrame].dummyPackageData.reduce((total, num) => num.collected ? total + num.amount : total, 0)}
                 </div>
-                <div className="w-60 lc jc-center" style={{fontSize: '70%'}}>Collected</div>
+                <div className="w-60 lc jc-center" style={{ fontSize: '70%' }}>Collected</div>
               </div>
               <div className="flex-sb">
                 <div className="w-40 lc" style={{ justifyContent: "space-evenly" }}>
                   <FontAwesomeIcon color='rgb(68, 82, 117)' size="lg" icon={faTimes} />
                   {this.state.dummyVehicleData[this.state.selectedFrame].dummyPackageData.reduce((total, num) => num.collected ? total : total + num.amount, 0)}
                 </div>
-                <div className="w-60 lc jc-center" style={{fontSize: '70%'}}>Remaining</div>
+                <div className="w-60 lc jc-center" style={{ fontSize: '70%' }}>Remaining</div>
               </div>
             </div>
             <div className="box br1 lc jc-center" style={{ width: '200px', height: '40px', marginTop: '5px' }}>
               Map
+            </div>
+          </div>
+          <div className="z-up" style={{ bottom: 35, right: 26 }}>
+            <div className="box br1" style={{ width: '350px', height: '160px' }}>
+              <div className="lc p-10" style={{ justifyContent: 'space-between' }}>
+                <FontAwesomeIcon color='dimgray' size="lg" icon={faFilter} />
+                <div style={{ width: '50%', fontSize: '12px' }}>
+                  <div style={{ fontWeight: '600' }}>
+                    Filter
+                </div>
+                  <div>
+                    Result: {this.state.dummyVehicleData[this.state.selectedFrame].dummyPackageData.length} Bin
+                </div>
+                </div>
+              </div>
+              <Dropdown
+                vehicles={this.state.dummyVehicleData[this.state.selectedFrame].vehicles}
+                selectedVehicle={this.state.selectedVehicle}
+                selectVehicle={(vehicle) => this.setState({ selectedVehicle: vehicle })}
+              >
+              </Dropdown>
+              <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <div style={{ textAlign: 'center', width: '100px' }}>
+                  <img src={require("./img/bus-green.png")} height="30px" alt="Bus active:move" />
+                  <div style={{ fontSize: '10px' }}>
+                    Active - On the Move
+                  </div>
+                </div>
+                <div style={{ textAlign: 'center', width: '100px' }}>
+                  <img src={require("./img/bus-red.png")} height="30px" alt="Bus active:pending" />
+                  <div style={{ fontSize: '10px' }}>
+                    Active - Pending
+                  </div>
+                </div>
+                <div style={{ textAlign: 'center', width: '100px' }}>
+                  <img src={require("./img/bus-gray.png")} height="30px" alt="Bus inactive" />
+                  <div style={{ fontSize: '10px' }}>
+                    Inactive
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
