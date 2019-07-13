@@ -4,33 +4,6 @@ import { truck, icon } from './CustomIcon';
 import 'leaflet/dist/leaflet.css';
 
 export default class Leaflet extends Component {
-  dummyPackageData = [
-    {
-      name: 'Package 1',
-      amount: 1,
-      position: [39.888, 32.796],
-      collected: false
-    },
-    {
-      name: 'Package 2',
-      amount: 3,
-      position: [39.894, 32.788],
-      collected: false
-    },
-    {
-      name: 'Package 3',
-      amount: 5,
-      position: [39.895, 32.787],
-      collected: true
-    },
-    {
-      name: 'Package 4',
-      amount: 2,
-      position: [39.896, 32.794],
-      collected: false
-    }
-  ]
-
   state = {
     center: {
       lat: 39.893894,
@@ -57,7 +30,7 @@ export default class Leaflet extends Component {
           </Marker>) : null
         }
 
-        {this.dummyPackageData.map((pack, index) =>
+        {this.props.dummyVehicleData[this.props.selectedFrame].dummyPackageData.map((pack, index) =>
           <Marker
             key={index}
             position={pack.position}

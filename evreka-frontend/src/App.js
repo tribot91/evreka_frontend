@@ -27,12 +27,38 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
-              data: { position: [39.888, 32.796], collected: 10, remaining: 23 }
+              data: { position: [39.888, 32.796], collected: 0, remaining: 26 }
             },
             {
               name: 'Kayaşehir',
-              data: { position: [39.893, 32.789], collected: 5, remaining: 12 }
+              data: { position: [39.893, 32.789], collected: 0, remaining: 20 }
             },
+          ],
+          dummyPackageData: [
+            {
+              name: 'Package 1',
+              amount: 1,
+              position: [39.888, 32.796],
+              collected: false
+            },
+            {
+              name: 'Package 2',
+              amount: 8,
+              position: [39.894, 32.788],
+              collected: false
+            },
+            {
+              name: 'Package 3',
+              amount: 25,
+              position: [39.895, 32.787],
+              collected: false
+            },
+            {
+              name: 'Package 4',
+              amount: 12,
+              position: [39.896, 32.794],
+              collected: false
+            }
           ]
         },
         {
@@ -40,12 +66,38 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
-              data: { position: [39.893, 32.789], collected: 12, remaining: 21 }
+              data: { position: [39.893, 32.789], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
-              data: { position: [39.883, 32.789], collected: 9, remaining: 8 }
+              data: { position: [39.883, 32.789], collected: 0, remaining: 20 }
             },
+          ],
+          dummyPackageData: [
+            {
+              name: 'Package 1',
+              amount: 1,
+              position: [39.888, 32.796],
+              collected: true
+            },
+            {
+              name: 'Package 2',
+              amount: 8,
+              position: [39.894, 32.788],
+              collected: false
+            },
+            {
+              name: 'Package 3',
+              amount: 25,
+              position: [39.895, 32.787],
+              collected: false
+            },
+            {
+              name: 'Package 4',
+              amount: 12,
+              position: [39.896, 32.794],
+              collected: false
+            }
           ]
         },
         {
@@ -53,12 +105,38 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
-              data: { position: [39.894, 32.788], collected: 12, remaining: 21 }
+              data: { position: [39.894, 32.788], collected: 1, remaining: 25 }
             },
             {
               name: 'Kayaşehir',
-              data: { position: [39.895, 32.787], collected: 9, remaining: 8 }
+              data: { position: [39.895, 32.787], collected: 8, remaining: 12 }
             },
+          ],
+          dummyPackageData: [
+            {
+              name: 'Package 1',
+              amount: 1,
+              position: [39.888, 32.796],
+              collected: true
+            },
+            {
+              name: 'Package 2',
+              amount: 8,
+              position: [39.894, 32.788],
+              collected: true
+            },
+            {
+              name: 'Package 3',
+              amount: 25,
+              position: [39.895, 32.787],
+              collected: false
+            },
+            {
+              name: 'Package 4',
+              amount: 12,
+              position: [39.896, 32.794],
+              collected: false
+            }
           ]
         },
         {
@@ -66,12 +144,38 @@ class App extends Component {
           vehicles: [
             {
               name: 'Fenertepe',
-              data: { position: [39.895, 32.786], collected: 12, remaining: 21 }
+              data: { position: [39.895, 32.786], collected: 26, remaining: 0 }
             },
             {
               name: 'Kayaşehir',
-              data: { position: [39.891, 32.783], collected: 9, remaining: 8 }
+              data: { position: [39.891, 32.783], collected: 20, remaining: 0 }
             },
+          ],
+          dummyPackageData: [
+            {
+              name: 'Package 1',
+              amount: 1,
+              position: [39.888, 32.796],
+              collected: true
+            },
+            {
+              name: 'Package 2',
+              amount: 8,
+              position: [39.894, 32.788],
+              collected: true
+            },
+            {
+              name: 'Package 3',
+              amount: 25,
+              position: [39.895, 32.787],
+              collected: true
+            },
+            {
+              name: 'Package 4',
+              amount: 12,
+              position: [39.896, 32.794],
+              collected: true
+            }
           ]
         }
       ]
@@ -154,7 +258,7 @@ class App extends Component {
             RouteList
           </div>
           <div className='flex-center' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
-            <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{paddingRight: '2px'}} />
+            <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{ paddingRight: '2px' }} />
             Create Report
           </div>
           <RouteList routelist={this.state.routelist}></RouteList>
