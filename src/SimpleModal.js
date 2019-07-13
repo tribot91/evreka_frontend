@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
+var SimpleModal = React.forwardRef(({ vehicle, name, driver, changeVehicle, handleContextClose }, ref) => {
     let availableVehicles = ['4.5. Etap', 'Bahçeşehir', 'Başakşehir', 'Bşk.&Ağa.', 'Kayaşehir']
 
     const classes = useStyles();
@@ -37,6 +37,7 @@ var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
+        handleContextClose();
         setOpen(true);
     };
 
@@ -65,7 +66,11 @@ var SimpleModal = React.forwardRef(({ vehicle, name, driver }, ref) => {
                                     <div>
                                         {vehicle}
                                     </div>
-                                    <div className='br1' style={{ background: 'dimgray', padding: '2px 5px' }}>
+                                    <div
+                                        className='br1'
+                                        style={{ background: 'dimgray', padding: '2px 5px' }}
+                                        onClick={() => changeVehicle(driver, vehicle)}
+                                    >
                                         <FontAwesomeIcon size="xs" color='white' icon={faExchangeAlt} />
                                     </div>
                                 </div>

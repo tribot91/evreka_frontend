@@ -192,6 +192,17 @@ class App extends Component {
     }
   }
 
+  changeVehicle = (driver, vehicle) => {
+    this.state.routelist.forEach((newRoute, index) => {
+      if (newRoute.driver === driver){
+        let newState = {...this.state}
+        newState.routelist[index].vehicle = vehicle
+        this.setState({ ...newState })
+      }
+    })
+  }
+
+
   render() {
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
       return { key: index, value: dataPerTime.time, label: moment.unix(dataPerTime.time).format("HH:mm") }
@@ -199,6 +210,26 @@ class App extends Component {
 
     return (
       <div className="App m-10">
+        {!this.state.mapview ? <div className="m-10">
+          <div className="lc" style={{ justifyContent: 'space-between' }}>
+            <div className='lc'>
+              <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
+              <DatePickers defaultValue={this.state.date}></DatePickers>
+              <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
+            </div>
+            <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} />
+          </div>
+
+          <div style={{ margin: '20px 0 10px' }}>
+            RouteList
+          </div>
+          <div className='lc' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
+            <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{ paddingRight: '2px' }} />
+            Create Report
+          </div>
+          <RouteList routelist={this.state.routelist} changeVehicle={(driver, newVehicle) => this.changeVehicle(driver, newVehicle)}></RouteList>
+        </div> : null}
+
         {this.state.mapview ? <div style={{ padding: '8px 0', background: 'white', overflowY: 'hidden' }}>
           <Leaflet
             selectedVehicle={this.state.selectedVehicle}
@@ -206,7 +237,7 @@ class App extends Component {
             selectedFrame={this.state.selectedFrame}
           >
           </Leaflet>
-          <div className='z-up lc' style={{ top: 28, left: 30 }}>
+          <div className='z-up lc' style={{ top: 28, left: 38 }}>
             <FontAwesomeIcon className='pr-10' icon={faBars} onClick={() => this.setState({ mapview: false })} />
             <DatePickers defaultValue={this.state.date} ></DatePickers>
             <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
@@ -301,25 +332,6 @@ class App extends Component {
             </div>
           </div>
 
-        </div> : null}
-        {!this.state.mapview ? <div className="m-10">
-          <div className="lc" style={{ justifyContent: 'space-between' }}>
-            <div className='lc'>
-              <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
-              <DatePickers defaultValue={this.state.date}></DatePickers>
-              <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
-            </div>
-            <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} />
-          </div>
-
-          <div style={{ margin: '20px 0 10px' }}>
-            RouteList
-          </div>
-          <div className='lc' style={{ fontSize: '11px', margin: '10px 0 20px' }}>
-            <FontAwesomeIcon color="dimgray" size="lg" icon={faFileAlt} style={{ paddingRight: '2px' }} />
-            Create Report
-          </div>
-          <RouteList routelist={this.state.routelist}></RouteList>
         </div> : null}
       </div>
     );

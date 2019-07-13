@@ -70,6 +70,7 @@ class RouteList extends Component {
                 <div>
                     {this.filteredList.map((data, index) =>
                         <Route
+                            changeVehicle={this.props.changeVehicle}
                             key={index}
                             name={data.name}
                             vehicle={data.vehicle}

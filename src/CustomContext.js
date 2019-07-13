@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Modal from './SimpleModal';
+import SimpleModal from './SimpleModal';
 
-var CustomContext = ({ vehicle, name, driver }) => {
+var CustomContext = ({ vehicle, name, driver, changeVehicle }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     function handleClick(event) {
@@ -27,7 +27,7 @@ var CustomContext = ({ vehicle, name, driver }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <Modal vehicle={vehicle} name={name} driver={driver}></Modal>
+                <SimpleModal vehicle={vehicle} name={name} driver={driver} changeVehicle={changeVehicle} handleContextClose={() => setAnchorEl(null)}></SimpleModal>
                 <MenuItem onClick={handleClose}>Swap</MenuItem>
             </Menu>
         </div>
