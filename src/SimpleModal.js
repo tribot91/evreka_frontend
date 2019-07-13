@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 var SimpleModal = React.forwardRef(({ vehicle, name, driver, changeVehicle, handleContextClose }, ref) => {
-    let availableVehicles = ['4.5. Etap', 'Bahçeşehir', 'Başakşehir', 'Bşk.&Ağa.', 'Kayaşehir']
+    let availableVehicles = ['Mercedes', 'Tır', 'Volkswagen', 'Ferrari', 'Kamaz', 'F16', 'Tesla', 'Ford', 'Anka', 'Traktör']
 
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);

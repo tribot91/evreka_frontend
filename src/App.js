@@ -236,7 +236,9 @@ class App extends Component {
               <DatePickers defaultValue={this.state.date}></DatePickers>
               <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
             </div>
-            <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} onClick={this.addRandomUser} />
+            <div className="cursor">
+              <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} onClick={this.addRandomUser} />
+            </div>
           </div>
 
           <div style={{ margin: '20px 0 10px' }}>

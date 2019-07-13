@@ -45,9 +45,7 @@ class RouteList extends Component {
         try {
             this.filteredList = this.props.routelist
                 .filter(route => !Object.keys(route).some(key => route[key].indexOf(this.state[key].text) === -1))
-        } catch (err) {
-            console.log(err)
-        }
+        } catch (err) {}
 
         Object.keys(this.state).forEach((key) => {
             if (this.state[key].sort === true)
