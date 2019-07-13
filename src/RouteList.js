@@ -30,7 +30,7 @@ class RouteList extends Component {
             }
         })
         Object.keys(this.state).forEach(field2 => {
-            if(field2 !== field) {
+            if (field2 !== field) {
                 this.setState({
                     [field2]: {
                         text: this.state[field2].text,
@@ -42,8 +42,12 @@ class RouteList extends Component {
     }
 
     render() {
-        this.filteredList = this.props.routelist
-            .filter(route => !Object.keys(route).some(key => route[key].indexOf(this.state[key].text) === -1))
+        try {
+            this.filteredList = this.props.routelist
+                .filter(route => !Object.keys(route).some(key => route[key].indexOf(this.state[key].text) === -1))
+        } catch (err) {
+            console.log(err)
+        }
 
         Object.keys(this.state).forEach((key) => {
             if (this.state[key].sort === true)

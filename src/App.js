@@ -7,6 +7,7 @@ import Slider from './DiscreteSlider';
 import Dropdown from './SimpleDropdown';
 import Leaflet from './Leaflet';
 import moment from 'moment';
+import DummyDataGenerator from './DummyDataGenerator';
 
 class App extends Component {
   constructor() {
@@ -192,6 +193,13 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate() {
+    var sliderMarks = document.getElementsByClassName('MuiSlider-mark');
+    var div = sliderMarks[sliderMarks.length - 1];
+    if (div)
+      div.className += ' last-element'
+  }
+
   changeVehicle = (driver, vehicle) => {
     this.state.routelist.forEach((newRoute, index) => {
       if (newRoute.driver === driver) {
@@ -202,15 +210,19 @@ class App extends Component {
     })
   }
 
-  componentDidUpdate() {
-    var sliderMarks = document.getElementsByClassName('MuiSlider-mark');
-    var div = sliderMarks[sliderMarks.length - 1];
-    if (div)
-      div.className += ' last-element'
+  addRandomUser = () => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${Math.floor(Math.random() * 10) + 1}`)
+      .then(response => response.json())
+      .then(json => {
+        let newState = { ...this.state }
+        newState.routelist.push(DummyDataGenerator(json))
+        this.setState(newState)
+      })
+      .catch(err => console.log(err))
   }
 
-
   render() {
+    // console.log(this.state.routelist)
     var marks = this.state.dummyVehicleData.map((dataPerTime, index) => {
       return { key: index, value: dataPerTime.time, label: moment.unix(dataPerTime.time).format("HH:mm") }
     })
@@ -218,14 +230,14 @@ class App extends Component {
     return (
       <div className="App m-10">
         {/* Dashboard */}
-        {!this.state.mapview ? <div style={{margin: '10px 5px'}}>
+        {!this.state.mapview ? <div style={{ margin: '10px 5px' }}>
           <div className="lc" style={{ justifyContent: 'space-between' }}>
             <div className='lc'>
               <FontAwesomeIcon className='pr-10' color="dimgray" size="lg" icon={faMap} onClick={() => this.setState({ mapview: true })} />
               <DatePickers defaultValue={this.state.date}></DatePickers>
               <FontAwesomeIcon color="dimgray" size="lg" icon={faArrowCircleRight} />
             </div>
-            <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} />
+            <FontAwesomeIcon color="green" size="2x" icon={faPlusCircle} onClick={this.addRandomUser} />
           </div>
 
           <div style={{ margin: '20px 0 10px' }}>
@@ -272,7 +284,7 @@ class App extends Component {
               Map
             </div>
           </div>
-          <div className="z-up right-box" style={{ bottom: 35, right: 26, width: '20vw',}}>
+          <div className="z-up right-box" style={{ bottom: 35, right: 26, width: '20vw', }}>
             <div className="box br1" style={{ height: '150px' }}>
               <div className="lc p-10" style={{ justifyContent: 'space-between' }}>
                 <FontAwesomeIcon color='darkgray' size="lg" icon={faFilter} />
